@@ -1,0 +1,45 @@
+@import 'tailwindcss' source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+@import 'tw-animate-css';
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom carousel styles */
+.client-carousel .slick-slider {
+  padding: 20px 0;
+}
+
+.client-carousel .slick-track {
+  display: flex;
+  align-items: center;
+}
+
+.client-carousel .slick-slide {
+  height: auto;
+}
+
+.client-carousel .slick-slide > div {
+  height: 100%;
+}
