@@ -1,224 +1,102 @@
 import { motion } from "motion/react";
-import { Target, Eye, Heart, Award } from "lucide-react";
+import { PageHero } from "../components/PageHero";
+import { sharedPageHeroImage } from "../config/media";
+import { useLanguage } from "../i18n/LanguageProvider";
 
 export function AboutPage() {
-  const values = [
-    {
-      icon: Target,
-      title: "Our Mission",
-      description:
-        "To deliver exceptional construction and architectural solutions that exceed client expectations while maintaining the highest standards of quality, safety, and sustainability.",
-    },
-    {
-      icon: Eye,
-      title: "Our Vision",
-      description:
-        "To be recognized as the premier luxury construction and design firm, known for our innovation, integrity, and commitment to creating spaces that inspire and endure.",
-    },
-    {
-      icon: Heart,
-      title: "Our Values",
-      description:
-        "Excellence, integrity, innovation, and client satisfaction are the pillars that guide every decision we make and every project we undertake.",
-    },
-    {
-      icon: Award,
-      title: "Our Promise",
-      description:
-        "We promise to deliver unparalleled quality, transparent communication, and a seamless experience from concept to completion on every project.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Michael Harrison",
-      position: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1758518727888-ffa196002e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxleGVjdXRpdmUlMjBidXNpbmVzcyUyMHBvcnRyYWl0JTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3Mjg5Mzc3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      name: "Sarah Mitchell",
-      position: "Chief Architect",
-      image: "https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBwcm9mZXNzaW9uYWwlMjBtZWV0aW5nfGVufDF8fHx8MTc3MjgwNzA3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      name: "James Anderson",
-      position: "Head of Construction",
-      image: "https://images.unsplash.com/photo-1758518727888-ffa196002e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxleGVjdXRpdmUlMjBidXNpbmVzcyUyMHBvcnRyYWl0JTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc3Mjg5Mzc3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-    {
-      name: "Emily Chen",
-      position: "Design Director",
-      image: "https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBwcm9mZXNzaW9uYWwlMjBtZWV0aW5nfGVufDF8fHx8MTc3MjgwNzA3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-    },
-  ];
+  const { dictionary } = useLanguage();
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBwcm9mZXNzaW9uYWwlMjBtZWV0aW5nfGVufDF8fHx8MTc3MjgwNzA3Nnww&ixlib=rb-4.1.0&q=80&w=1080")',
-          }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-white">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-serif mb-4 tracking-tight"
+    <div className="bg-white text-[#111111]">
+      <PageHero
+        eyebrow={dictionary.about.eyebrow}
+        title={dictionary.about.title}
+        description={dictionary.about.intro}
+        image={sharedPageHeroImage}
+      />
+
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 px-4 sm:px-6 md:gap-6 lg:grid-cols-3 lg:px-8">
+          {[
+            {
+              title: dictionary.about.overviewTitle,
+              body: dictionary.about.overviewBody,
+            },
+            {
+              title: dictionary.about.visionTitle,
+              body: dictionary.about.visionBody,
+            },
+            {
+              title: dictionary.about.missionTitle,
+              body: dictionary.about.missionBody,
+            },
+          ].map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, delay: index * 0.06 }}
+              className="rounded-[1.2rem] border border-[#e5e5e5] bg-white p-4 shadow-[0_10px_24px_rgba(17,17,17,0.05)] md:rounded-[1.8rem] md:p-7 md:shadow-[0_18px_45px_rgba(17,17,17,0.07)]"
             >
-              About Us
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/90"
-            >
-              Building Excellence Since 1995
-            </motion.p>
-          </div>
+              <h2 className="text-xl font-serif text-[#111111] md:text-3xl">{item.title}</h2>
+              <p className="mt-3 text-xs leading-6 text-[#666666] md:mt-5 md:text-sm md:leading-8">{item.body}</p>
+            </motion.article>
+          ))}
         </div>
       </section>
 
-      {/* Company History */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <h2 className="text-base md:text-lg tracking-[0.3em] text-gray-600 uppercase">
-                Our Story
-              </h2>
-              <h3 className="text-3xl md:text-4xl font-serif text-gray-900 tracking-tight">
-                Three Decades of Excellence
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 1995 by visionary architect Michael Harrison, Prestige began with 
-                a simple yet ambitious goal: to redefine luxury construction and architectural 
-                design. What started as a small team of passionate professionals has grown into 
-                a leading firm known for its exceptional craftsmanship and innovative approach.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Over the years, we've successfully completed over 500 projects, ranging from 
-                luxury residential estates to iconic commercial buildings. Each project is a 
-                testament to our commitment to excellence, sustainability, and our clients' 
-                unique visions.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Today, Prestige stands as a symbol of quality and innovation in the construction 
-                industry. Our portfolio includes award-winning projects that have shaped skylines 
-                and created lasting impressions in communities worldwide.
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1641998148499-cb6b55a3c0d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBvZmZpY2UlMjBpbnRlcmlvciUyMG1vZGVybnxlbnwxfHx8fDE3NzI5MTAwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Office Interior"
-                className="w-full h-[600px] object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission, Vision, Values */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-base md:text-lg tracking-[0.3em] text-gray-600 uppercase mb-4">
-              What Drives Us
+      <section className="border-y border-[#e5e5e5] bg-[#f7f7f7] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
+              {dictionary.about.valuesTitle}
+            </p>
+            <h2 className="mt-4 text-4xl font-serif text-[#111111] md:text-5xl">
+              {dictionary.about.title}
             </h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-gray-900 tracking-tight">
-              Our Core Principles
-            </h3>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:gap-5">
+            {dictionary.about.values.map((value, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={value}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 hover:shadow-xl transition-all duration-300 group"
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.55, delay: index * 0.05 }}
+                className="rounded-[1.15rem] border border-[#e5e5e5] bg-white p-4 text-xs leading-6 text-[#666666] shadow-[0_10px_24px_rgba(17,17,17,0.05)] md:rounded-[1.5rem] md:p-5 md:text-sm md:leading-7 md:shadow-[0_12px_30px_rgba(17,17,17,0.05)]"
               >
-                <value.icon className="w-12 h-12 text-gray-900 mb-6 group-hover:scale-110 transition-transform duration-300" />
-                <h4 className="text-2xl font-serif text-gray-900 mb-4">
-                  {value.title}
-                </h4>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                {value}
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-base md:text-lg tracking-[0.3em] text-gray-600 uppercase mb-4">
-              Meet the Team
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
+              {dictionary.about.growthTitle}
+            </p>
+            <h2 className="mt-4 text-4xl font-serif text-[#111111] md:text-5xl">
+              {dictionary.about.title}
             </h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-gray-900 tracking-tight">
-              Leadership & Expertise
-            </h3>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+            {dictionary.about.growthSteps.map((step, index) => (
+              <motion.article
+                key={step.title}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.6, delay: index * 0.07 }}
+                className="rounded-[1.2rem] border border-[#e5e5e5] bg-white p-4 shadow-[0_10px_24px_rgba(17,17,17,0.05)] md:rounded-[2rem] md:p-7 md:shadow-[0_18px_45px_rgba(17,17,17,0.07)]"
               >
-                <div className="relative overflow-hidden mb-4">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <h4 className="text-xl font-serif text-gray-900 mb-1">
-                  {member.name}
-                </h4>
-                <p className="text-gray-600 text-sm tracking-wide uppercase">
-                  {member.position}
-                </p>
-              </motion.div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[#9d7529] md:text-xs md:tracking-[0.35em]">{step.year}</p>
+                <h3 className="mt-4 text-xl font-serif text-[#111111] md:mt-5 md:text-2xl">{step.title}</h3>
+                <p className="mt-3 text-xs leading-6 text-[#666666] md:mt-4 md:text-sm md:leading-7">{step.description}</p>
+              </motion.article>
             ))}
           </div>
         </div>

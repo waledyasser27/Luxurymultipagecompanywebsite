@@ -1,114 +1,264 @@
-import { HeroSlider } from "../components/HeroSlider";
+import { Link } from "react-router";
+import { ArrowRight, Building2, CircleParking, Landmark, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
-import { Building2, Users, Award, TrendingUp } from "lucide-react";
+import { ProjectCard } from "../components/ProjectCard";
+import { officialPhoneTel } from "../config/contact";
+import { projects } from "../data/projects";
+import { useLanguage } from "../i18n/LanguageProvider";
 
 export function HomePage() {
-  const stats = [
-    { icon: Building2, value: "500+", label: "Projects Completed" },
-    { icon: Users, value: "250+", label: "Happy Clients" },
-    { icon: Award, value: "50+", label: "Awards Won" },
-    { icon: TrendingUp, value: "28", label: "Years of Excellence" },
+  const { dictionary, language } = useLanguage();
+  const sevenBProject = projects[0];
+  const secondaryProject = projects[1];
+  const credibilityIcons = [Building2, Landmark, Sparkles];
+  const sevenBFeatures = [
+    { icon: Building2, label: dictionary.home.heroStats[0] },
+    { icon: Landmark, label: dictionary.home.heroStats[1] },
+    { icon: CircleParking, label: dictionary.home.heroStats[2] },
   ];
 
   return (
-    <div>
-      {/* Hero Slider */}
-      <HeroSlider />
-
-      {/* Quick Intro Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="overflow-hidden bg-white text-[#111111]">
+      <section className="relative isolate overflow-hidden bg-[#111111] pt-20 md:pt-24">
+        <div
+          className="absolute inset-0 bg-cover md:hidden"
+          style={{
+            backgroundImage: `url("${sevenBProject.image}")`,
+            backgroundPosition: "50% center",
+          }}
+          aria-label="Seven B Mall"
+        />
+        <div
+          className="absolute inset-0 hidden bg-cover md:block"
+          style={{
+            backgroundImage: `url("${sevenBProject.image}")`,
+            backgroundPosition: "center center",
+          }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,17,17,0.64),rgba(17,17,17,0.36),rgba(17,17,17,0.08)),linear-gradient(0deg,rgba(17,17,17,0.22),rgba(17,17,17,0.02))]" />
+        <div className="relative mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl gap-8 px-4 py-10 sm:px-6 md:min-h-[calc(100vh-6rem)] md:py-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+            className="flex flex-col justify-end pb-12 md:justify-center md:pb-0"
           >
-            <h2 className="text-base md:text-lg tracking-[0.3em] text-gray-600 uppercase mb-4">
-              Welcome to Prestige
-            </h2>
-            <h3 className="text-3xl md:text-5xl font-serif text-gray-900 mb-6 tracking-tight">
-              Building Dreams, Creating Legacy
-            </h3>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              For over two decades, Prestige has been at the forefront of luxury construction 
-              and architectural design. We transform visions into reality, creating spaces that 
-              inspire, innovate, and endure. Our commitment to excellence, attention to detail, 
-              and unwavering dedication to our clients has made us a trusted name in the industry.
+            <p className="mb-4 text-xs uppercase tracking-[0.45em] text-[#f1d28a]">
+              {dictionary.home.heroEyebrow}
             </p>
+            <h1 className="max-w-4xl text-4xl font-serif tracking-tight text-white sm:text-5xl md:text-7xl">
+              {dictionary.home.heroTitle}
+            </h1>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/84 sm:text-base md:mt-6 md:text-lg md:leading-8">
+              {dictionary.home.heroDescription}
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3 md:mt-10 md:gap-4">
+              <Link
+                to="/projects/seven-b-mall"
+                className="rounded-full bg-[#C9A96E] px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-[0_16px_32px_rgba(201,169,110,0.24)] transition-transform hover:-translate-y-0.5 md:px-7 md:py-4 md:text-sm md:tracking-[0.28em]"
+              >
+                {dictionary.common.viewSevenB}
+              </Link>
+              <Link
+                to="/projects/seven-b-mall#reservation"
+                className="rounded-full border border-white/70 bg-white/10 px-5 py-3 text-xs uppercase tracking-[0.24em] text-white shadow-sm backdrop-blur-sm transition-colors hover:border-[#f1d28a] hover:text-[#f1d28a] md:px-7 md:py-4 md:text-sm md:tracking-[0.28em]"
+              >
+                {dictionary.common.reserveNow}
+              </Link>
+              <Link
+                to="/contact"
+                className="rounded-full border border-white/70 bg-white/10 px-5 py-3 text-xs uppercase tracking-[0.24em] text-white backdrop-blur-sm transition-colors hover:border-[#f1d28a] hover:text-[#f1d28a] md:px-7 md:py-4 md:text-sm md:tracking-[0.28em]"
+              >
+                {dictionary.common.contactUs}
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, delay: 0.15 }}
+            className="hidden self-end rounded-[2rem] border border-white/25 bg-white/12 p-6 shadow-[0_24px_70px_rgba(17,17,17,0.18)] backdrop-blur-xl lg:block"
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-white/70">
+                  {dictionary.common.flagshipProject}
+                </p>
+                <h2 className="mt-3 text-3xl font-serif text-white">Seven B Mall</h2>
+              </div>
+              <span className="rounded-full border border-[#f1d28a]/45 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[#f1d28a] shadow-sm">
+                {sevenBProject.progressValue}%
+              </span>
+            </div>
+            <div className="space-y-4">
+              {sevenBFeatures.map((feature) => (
+                <div
+                  key={feature.label}
+                  className="flex items-start gap-4 rounded-[1.25rem] border border-white/16 bg-white/10 p-4"
+                >
+                  <feature.icon className="mt-1 h-5 w-5 text-[#f1d28a]" />
+                  <p className="text-sm leading-7 text-white/78">{feature.label}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <stat.icon className="w-12 h-12 mx-auto mb-4 text-white/80" />
-                <div className="text-4xl md:text-5xl font-serif mb-2">{stat.value}</div>
-                <div className="text-sm md:text-base text-white/80 tracking-wide uppercase">
-                  {stat.label}
+      <section className="border-y border-[#e5e5e5] bg-[#f7f7f7] py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65 }}
+            className="space-y-6"
+          >
+            <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
+              {dictionary.home.sevenBLabel}
+            </p>
+            <h2 className="text-4xl font-serif text-[#111111] md:text-5xl">
+              {dictionary.home.sevenBSpotlightTitle}
+            </h2>
+            <p className="max-w-2xl text-base leading-8 text-[#666666]">
+              {dictionary.home.sevenBSpotlightDescription}
+            </p>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+              {dictionary.home.sevenBHighlights.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.15rem] border border-[#e5e5e5] bg-white p-4 text-xs leading-6 text-[#666666] shadow-[0_10px_24px_rgba(17,17,17,0.05)] md:rounded-[1.5rem] md:p-5 md:text-sm md:leading-7 md:shadow-[0_12px_30px_rgba(17,17,17,0.05)]"
+                >
+                  {item}
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            className="overflow-hidden rounded-[2rem] border border-[#e5e5e5] bg-white shadow-[0_18px_45px_rgba(17,17,17,0.08)]"
+          >
+            <img
+              src={sevenBProject.image}
+              alt="Seven B Mall"
+              className="h-64 w-full object-cover sm:h-72"
+            />
+            <div className="space-y-4 p-8">
+              <p className="text-xs uppercase tracking-[0.35em] text-[#8a8377]">
+                {dictionary.common.investmentOpportunity}
+              </p>
+              <p className="text-2xl font-serif text-[#111111]">
+                {sevenBProject.overview[language]}
+              </p>
+              <div className="h-2 overflow-hidden rounded-full bg-[#e5e5e5]">
+                <div
+                  className="h-full rounded-full bg-[#C9A96E]"
+                  style={{ width: `${sevenBProject.progressValue}%` }}
+                />
+              </div>
+              <p className="text-sm leading-7 text-[#666666]">
+                {sevenBProject.progressText[language]}
+              </p>
+              <Link
+                to="/projects/seven-b-mall"
+                className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.28em] text-[#9d7529]"
+              >
+                {dictionary.common.viewProject}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <div className="space-y-5">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
+              {dictionary.home.secondaryLabel}
+            </p>
+            <h2 className="text-4xl font-serif text-[#111111]">{dictionary.home.secondaryTitle}</h2>
+            <p className="text-base leading-8 text-[#666666]">
+              {dictionary.home.secondaryDescription}
+            </p>
+            <Link
+              to={`/projects/${secondaryProject.slug}`}
+              className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.28em] text-[#9d7529]"
+            >
+              {dictionary.common.viewProject}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <ProjectCard project={secondaryProject} />
+        </div>
+      </section>
+
+      <section className="border-y border-[#e5e5e5] bg-[#f7f7f7] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 max-w-3xl space-y-4">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
+              {dictionary.home.credibilityTitle}
+            </p>
+            <h2 className="text-4xl font-serif text-[#111111] md:text-5xl">
+              {dictionary.home.journeyTitle}
+            </h2>
+            <p className="text-base leading-8 text-[#666666]">
+              {dictionary.home.journeyDescription}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
+            {dictionary.home.credibilityItems.map((item, index) => {
+              const Icon = credibilityIcons[index];
+
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.55, delay: index * 0.08 }}
+                  className="rounded-[1.2rem] border border-[#e5e5e5] bg-white p-4 shadow-[0_10px_24px_rgba(17,17,17,0.05)] md:rounded-[1.8rem] md:p-7 md:shadow-[0_18px_45px_rgba(17,17,17,0.07)]"
+                >
+                  <Icon className="h-6 w-6 text-[#C9A96E] md:h-8 md:w-8" />
+                  <h3 className="mt-4 text-xl font-serif text-[#111111] md:mt-6 md:text-2xl">{item.title}</h3>
+                  <p className="mt-3 text-xs leading-6 text-[#666666] md:mt-4 md:text-sm md:leading-7">{item.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Featured Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1758518730384-be3d205838e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMGhhbmRzaGFrZXxlbnwxfHx8fDE3NzI4NDE0OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Professional Partnership"
-                className="w-full h-[500px] object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <h2 className="text-base md:text-lg tracking-[0.3em] text-gray-600 uppercase">
-                Our Commitment
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-[2.25rem] border border-[#e5e5e5] bg-white p-8 shadow-[0_24px_70px_rgba(17,17,17,0.10)] md:p-12">
+            <div className="max-w-3xl space-y-6">
+              <h2 className="text-4xl font-serif text-[#111111] md:text-5xl">
+                {dictionary.home.finalCtaTitle}
               </h2>
-              <h3 className="text-3xl md:text-4xl font-serif text-gray-900 tracking-tight">
-                Excellence in Every Detail
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                At Prestige, we believe that exceptional projects are built on strong 
-                partnerships. Our collaborative approach ensures that every client's unique 
-                vision is realized with precision and care. From initial concept to final 
-                execution, we maintain the highest standards of quality and professionalism.
+              <p className="text-base leading-8 text-[#666666]">
+                {dictionary.home.finalCtaDescription}
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our team of experts brings decades of combined experience in architecture, 
-                construction, and project management. We leverage cutting-edge technology 
-                and innovative techniques to deliver results that exceed expectations.
-              </p>
-              <button className="px-8 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 tracking-wide text-sm uppercase transform hover:scale-105">
-                Learn More About Us
-              </button>
-            </motion.div>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/projects/seven-b-mall#reservation"
+                  className="rounded-full bg-[#C9A96E] px-7 py-4 text-sm font-semibold uppercase tracking-[0.28em] text-white shadow-[0_16px_32px_rgba(201,169,110,0.24)]"
+                >
+                  {dictionary.common.reserveNow}
+                </Link>
+                <a
+                  href={`tel:${officialPhoneTel}`}
+                  className="rounded-full border border-[#C9A96E] bg-white px-7 py-4 text-sm uppercase tracking-[0.28em] text-[#9d7529] transition-colors hover:bg-[#C9A96E] hover:text-white"
+                >
+                  {dictionary.common.contactSales}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
