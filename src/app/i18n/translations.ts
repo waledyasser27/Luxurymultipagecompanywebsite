@@ -148,7 +148,7 @@ export const translations = {
       description:
         "Use the channels below to discuss availability, investment interest, project updates, or partnership opportunities.",
       addressTitle: "Head Office",
-      address: "Cairo, Egypt",
+      address: "5J9V+8C6, El Shorouk, Cairo Governorate 4933001, Egypt",
       phoneTitle: "Sales & Reservations",
       phone: officialPhoneDisplay,
       emailTitle: "Email",
@@ -158,7 +158,7 @@ export const translations = {
       ctaTitle: "Make Seven B Mall your next commercial move.",
       ctaBody:
         "Share your preferred unit type and budget, and our team will help you understand availability, pricing, and reservation steps.",
-      mapLabel: "Gold City Developments sales office location",
+      mapLabel: "5J9V+8C6, El Shorouk, Cairo Governorate 4933001, Egypt",
     },
     reservation: {
       eyebrow: "Reservation & Inquiry",
@@ -365,7 +365,7 @@ export const translations = {
       description:
         "استخدم القنوات التالية للاستفسار عن التوافر أو الفرص الاستثمارية أو مستجدات المشروعات أو فرص التعاون.",
       addressTitle: "المكتب الرئيسي",
-      address: "القاهرة، مصر",
+      address: "5J9V+8C6, El Shorouk, Cairo Governorate 4933001, Egypt",
       phoneTitle: "المبيعات والحجز",
       phone: officialPhoneDisplay,
       emailTitle: "البريد الإلكتروني",
@@ -375,7 +375,7 @@ export const translations = {
       ctaTitle: "اجعل Seven B Mall خطوتك التجارية القادمة",
       ctaBody:
         "شاركنا نوع الوحدة والميزانية، وسيساعدك فريقنا في معرفة التوافر والأسعار وخطوات الحجز.",
-      mapLabel: "موقع مكتب مبيعات جولد سيتي",
+      mapLabel: "5J9V+8C6, El Shorouk, Cairo Governorate 4933001, Egypt",
     },
     reservation: {
       eyebrow: "الحجز والاستفسار",
