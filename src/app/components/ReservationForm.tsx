@@ -35,7 +35,9 @@ export function ReservationForm({
   const { dictionary, language } = useLanguage();
   const [formValues, setFormValues] = useState<ReservationFormValues>(initialFormValues);
   const [errors, setErrors] = useState<Partial<Record<keyof ReservationFormValues, string>>>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "fallback" | "error"
+  >("idle");
   const [submitError, setSubmitError] = useState("");
   const [submissionResult, setSubmissionResult] = useState<LeadSubmissionResult | null>(null);
   const isMedicalClinicSelected =
@@ -116,7 +118,7 @@ export function ReservationForm({
       const payload = buildLeadPayload(formValues, projectName);
       const result = await emailJsLeadAdapter.submitLead(payload);
       setSubmissionResult(result);
-      setStatus("success");
+      setStatus(result.ok && result.emailJsConfigured ? "success" : "fallback");
       setFormValues(initialFormValues);
     } catch (error) {
       const emailJsError =
@@ -318,22 +320,29 @@ export function ReservationForm({
         </div>
       </form>
 
-      {status === "success" && submissionResult ? (
+      {(status === "success" || status === "fallback") && submissionResult ? (
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-5 text-[#111111]"
+          className={`mt-6 rounded-[1.5rem] p-5 text-[#111111] ${
+            status === "success"
+              ? "border border-emerald-200 bg-emerald-50"
+              : "border border-amber-200 bg-amber-50"
+          }`}
         >
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="mt-1 h-5 w-5 text-emerald-600" />
+            <CheckCircle2
+              className={`mt-1 h-5 w-5 ${
+                status === "success" ? "text-emerald-600" : "text-amber-600"
+              }`}
+            />
             <div className="space-y-4">
               <p className="text-sm leading-7 text-[#3f4f42]">
-                {dictionary.common.success}
-                {!submissionResult.emailJsConfigured
-                  ? " EmailJS is not configured yet, so use WhatsApp or email draft for this lead."
-                  : submissionResult.emailJsError
-                    ? ` Email delivery needs review: ${submissionResult.emailJsError}. Please continue on WhatsApp or open the email draft.`
-                  : ""}
+                {status === "success"
+                  ? dictionary.common.success
+                  : !submissionResult.emailJsConfigured
+                    ? "Lead saved locally, but EmailJS is not configured in this build. Continue using WhatsApp or the email draft below."
+                    : `Lead captured, but EmailJS could not confirm delivery. ${submissionResult.emailJsError ?? "Please continue using WhatsApp or the email draft below."}`}
               </p>
               <a
                 href={`tel:${officialPhoneTel}`}
