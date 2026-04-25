@@ -7,16 +7,22 @@
     <title>Gold City Developments | Seven B Mall</title>
     <script>
       (function () {
-        var redirect = sessionStorage.getItem("gh-pages-spa-redirect");
-        if (!redirect) return;
+        try {
+          var redirect = sessionStorage.getItem("gh-pages-spa-redirect");
+          if (!redirect) return;
 
-        sessionStorage.removeItem("gh-pages-spa-redirect");
+          sessionStorage.removeItem("gh-pages-spa-redirect");
 
-        var url = new URL(redirect);
-        var nextPath = url.pathname + url.search + url.hash;
+          var url = new URL(redirect, window.location.origin);
+          var nextPath = url.pathname + url.search + url.hash;
+          var currentPath =
+            window.location.pathname + window.location.search + window.location.hash;
 
-        if (nextPath !== window.location.pathname + window.location.search + window.location.hash) {
-          window.history.replaceState(null, "", nextPath);
+          if (nextPath !== currentPath) {
+            window.history.replaceState(null, "", nextPath);
+          }
+        } catch (error) {
+          console.warn("GitHub Pages redirect recovery failed", error);
         }
       })();
     </script>
