@@ -13,6 +13,7 @@ import { useLanguage } from "../i18n/LanguageProvider";
 export function ContactPage() {
   const { dictionary } = useLanguage();
   const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dictionary.contact.mapLabel)}`;
+  const mapEmbedHref = `https://maps.google.com/maps?q=${encodeURIComponent(dictionary.contact.mapLabel)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
   const contactCards = [
     { icon: MapPin, title: dictionary.contact.addressTitle, body: dictionary.contact.address },
@@ -87,11 +88,20 @@ export function ContactPage() {
             <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
               {dictionary.common.strategicAddress}
             </p>
+            <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-[#e5e5e5] bg-[#f7f7f7]">
+              <iframe
+                title={dictionary.contact.mapLabel}
+                src={mapEmbedHref}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-80 w-full border-0"
+              />
+            </div>
             <a
               href={mapHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 flex min-h-80 items-center justify-center rounded-[1.5rem] border border-[#e5e5e5] bg-[#f7f7f7] p-8 text-center text-sm leading-8 text-[#666666] transition-colors hover:border-[#C9A96E] hover:text-[#9d7529]"
+              className="mt-4 block text-sm leading-7 text-[#666666] transition-colors hover:text-[#9d7529]"
             >
               {dictionary.contact.mapLabel}
             </a>
