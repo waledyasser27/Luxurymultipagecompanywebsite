@@ -55,6 +55,21 @@ export const translations = {
         "Curated tenant mix for stronger operational clarity",
         "Fast inquiry flow for availability, prices, and reservation steps",
       ],
+      numbersTitle: "Gold City in numbers",
+      numbersItems: [
+        {
+          value: "300+",
+          label: "Units",
+        },
+        {
+          value: "300M+",
+          label: "EGP Investment Volume",
+        },
+        {
+          value: "15+",
+          label: "Years Experience",
+        },
+      ],
       sevenBLabel: "Seven B Mall",
       sevenBSpotlightTitle: "Seven B Mall is our flagship commercial destination.",
       sevenBSpotlightDescription:
@@ -271,6 +286,21 @@ export const translations = {
         "مفهوم مركز طبي متكامل بعيادات وخدمات معامل",
         "مزيج أنشطة مدروس لوضوح تشغيلي أقوى",
         "مسار استفسار سريع لمعرفة التوافر والأسعار وخطوات الحجز",
+      ],
+      numbersTitle: "جولد سيتي في أرقام",
+      numbersItems: [
+        {
+          value: "+300",
+          label: "وحدة",
+        },
+        {
+          value: "+300 مليون",
+          label: "حجم استثماري",
+        },
+        {
+          value: "+15",
+          label: "سنة خبرة",
+        },
       ],
       sevenBLabel: "Seven B Mall",
       sevenBSpotlightTitle: "Seven B Mall هو الوجهة التجارية الرئيسية في محفظتنا.",

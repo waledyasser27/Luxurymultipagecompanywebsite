@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { officialPhoneDisplay, officialPhoneTel } from "../config/contact";
 import { useLanguage } from "../i18n/LanguageProvider";
 
+const navbarMarkSrc = "/images/ChatGPT%20Image%20Apr%2025,%202026,%2002_33_44%20PM.png";
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,22 +55,27 @@ export function Navbar() {
           <div className="flex h-20 items-center justify-between">
             <Link
               to="/"
-              className="flex items-center text-2xl md:text-3xl font-serif tracking-tight"
+              className="flex items-center gap-[10px]"
             >
-              <div className="flex flex-col">
+              <img
+                src={navbarMarkSrc}
+                alt={dictionary.brand.name}
+                className="h-[170px] w-auto object-contain"
+              />
+              <div className="flex flex-col leading-none">
                 <span
-                  className={`text-lg transition-colors md:text-2xl ${
-                    isTransparent ? "text-white" : "text-[#111111]"
+                  className={`text-[18px] font-semibold leading-none tracking-[0.06em] transition-colors ${
+                    isTransparent ? "text-white" : "text-[#1a1a1a]"
                   }`}
                 >
-                  {dictionary.brand.shortName}
+                  GOLD CITY
                 </span>
                 <span
-                  className={`text-[10px] uppercase tracking-[0.35em] transition-colors ${
-                    isTransparent ? "text-white/70" : "text-[#666666]"
+                  className={`mt-0.5 text-[9px] uppercase tracking-[0.4em] transition-colors ${
+                    isTransparent ? "text-[#cccccc]" : "text-[#999999]"
                   }`}
                 >
-                  Developments
+                  DEVELOPMENTS
                 </span>
               </div>
             </Link>
@@ -154,6 +161,21 @@ export function Navbar() {
             className="fixed top-20 left-0 right-0 z-40 border-b border-[#e5e5e5] bg-white shadow-xl lg:hidden"
           >
             <div className="space-y-3 px-4 py-6" dir={dir}>
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <img
+                  src={navbarMarkSrc}
+                  alt={dictionary.brand.name}
+                  className="h-[170px] w-auto object-contain"
+                />
+                <div className="flex flex-col leading-none">
+                  <span className="text-[18px] font-semibold leading-none tracking-[0.06em] text-[#1a1a1a]">
+                    GOLD CITY
+                  </span>
+                  <span className="mt-0.5 text-[9px] uppercase tracking-[0.4em] text-[#999999]">
+                    DEVELOPMENTS
+                  </span>
+                </div>
+              </div>
               {navLinks.map((link) => (
                 <Link
                   key={link.path}

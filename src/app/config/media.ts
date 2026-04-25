@@ -30,9 +30,9 @@ export const homeHeroSlides = [
     mobilePosition: "50% center",
   },
   {
-    id: "shabrawy",
-    image: shabrawyHeroImage,
-    label: "El-Shabrawy Mall",
+    id: "gold-city",
+    image: goldCityHeroImage,
+    label: "Gold City",
     position: "center center",
     mobilePosition: "50% center",
   },

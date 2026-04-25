@@ -1,41 +1,65 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ArrowRight, Building2, CircleParking, Landmark, Sparkles } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ProjectCard } from "../components/ProjectCard";
 import { officialPhoneTel } from "../config/contact";
+import { homeHeroSlides } from "../config/media";
 import { projects } from "../data/projects";
 import { useLanguage } from "../i18n/LanguageProvider";
 
 export function HomePage() {
   const { dictionary, language } = useLanguage();
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const sevenBProject = projects[0];
   const secondaryProject = projects[1];
   const credibilityIcons = [Building2, Landmark, Sparkles];
+  const numbersItems = dictionary.home.numbersItems;
+  const currentHeroSlide = homeHeroSlides[activeHeroSlide];
   const sevenBFeatures = [
     { icon: Building2, label: dictionary.home.heroStats[0] },
     { icon: Landmark, label: dictionary.home.heroStats[1] },
     { icon: CircleParking, label: dictionary.home.heroStats[2] },
   ];
 
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveHeroSlide((current) => (current + 1) % homeHeroSlides.length);
+    }, 4200);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
       <section className="relative isolate overflow-hidden bg-[#111111] pt-20 md:pt-24">
-        <div
-          className="absolute inset-0 bg-cover md:hidden"
-          style={{
-            backgroundImage: `url("${sevenBProject.image}")`,
-            backgroundPosition: "50% center",
-          }}
-          aria-label="Seven B Mall"
-        />
-        <div
-          className="absolute inset-0 hidden bg-cover md:block"
-          style={{
-            backgroundImage: `url("${sevenBProject.image}")`,
-            backgroundPosition: "center center",
-          }}
-          aria-hidden="true"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentHeroSlide.id}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
+            <div
+              className="absolute inset-0 bg-cover md:hidden"
+              style={{
+                backgroundImage: `url("${currentHeroSlide.image}")`,
+                backgroundPosition: currentHeroSlide.mobilePosition,
+              }}
+              aria-label={currentHeroSlide.label}
+            />
+            <div
+              className="absolute inset-0 hidden bg-cover md:block"
+              style={{
+                backgroundImage: `url("${currentHeroSlide.image}")`,
+                backgroundPosition: currentHeroSlide.position,
+              }}
+              aria-hidden="true"
+            />
+          </motion.div>
+        </AnimatePresence>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,17,17,0.64),rgba(17,17,17,0.36),rgba(17,17,17,0.08)),linear-gradient(0deg,rgba(17,17,17,0.22),rgba(17,17,17,0.02))]" />
         <div className="relative mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl gap-8 px-4 py-10 sm:px-6 md:min-h-[calc(100vh-6rem)] md:py-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 lg:px-8">
           <motion.div
@@ -73,6 +97,19 @@ export function HomePage() {
                 {dictionary.common.contactUs}
               </Link>
             </div>
+            <div className="mt-8 flex items-center gap-2">
+              {homeHeroSlides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  onClick={() => setActiveHeroSlide(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === activeHeroSlide ? "w-10 bg-[#f1d28a]" : "w-2 bg-white/40"
+                  }`}
+                  aria-label={`Show ${slide.label}`}
+                />
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
@@ -104,6 +141,43 @@ export function HomePage() {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#baa270] py-20 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.06))]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h2 className="text-3xl font-semibold text-white md:text-5xl">
+              {dictionary.home.numbersTitle}
+            </h2>
+          </motion.div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {numbersItems.map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                className="rounded-[1.8rem] border border-white/18 bg-white/6 px-6 py-10 text-center shadow-[0_18px_45px_rgba(17,17,17,0.08)] backdrop-blur-[2px]"
+              >
+                <p className="text-5xl font-semibold leading-none text-white md:text-6xl">
+                  {item.value}
+                </p>
+                <p className="mt-4 text-base font-medium text-white/92 md:text-lg">
+                  {item.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
