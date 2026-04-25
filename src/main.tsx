@@ -10,15 +10,6 @@ if (!rootElement) {
   throw new Error('Failed to find the root element');
 }
 
-const preloaderElement = document.getElementById('app-preloader');
-
-const hidePreloader = () => {
-  if (!preloaderElement) return;
-
-  preloaderElement.classList.add('is-hidden');
-  window.setTimeout(() => preloaderElement.remove(), 120);
-};
-
 createRoot(rootElement).render(
   <StrictMode>
     <LanguageProvider>
@@ -26,5 +17,3 @@ createRoot(rootElement).render(
     </LanguageProvider>
   </StrictMode>
 );
-
-window.requestAnimationFrame(hidePreloader);

@@ -5,69 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Gold City Developments presents Seven B Mall, a premium medical investment destination with clinics, labs, reservation support, and direct WhatsApp inquiry." />
     <title>Gold City Developments | Seven B Mall</title>
-    <style>
-      #app-preloader {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background:
-          radial-gradient(circle at top, rgba(201, 169, 110, 0.18), transparent 42%),
-          linear-gradient(180deg, #111111 0%, #1b1b1b 100%);
-        transition: opacity 0.2s ease, visibility 0.2s ease;
-      }
-
-      #app-preloader.is-hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      .preloader-mark {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        text-align: center;
-        color: #f5e7c2;
-      }
-
-      .preloader-ring {
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(241, 210, 138, 0.22);
-        border-top-color: #f1d28a;
-        border-radius: 999px;
-        animation: preloader-spin 0.55s linear infinite;
-      }
-
-      .preloader-title {
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(1.7rem, 4vw, 2.4rem);
-        line-height: 1;
-        letter-spacing: 0.03em;
-      }
-
-      .preloader-subtitle {
-        font-family: "Manrope", sans-serif;
-        font-size: 0.52rem;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      @keyframes preloader-spin {
-        from {
-          transform: rotate(0deg);
-        }
-
-        to {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
     <script>
       (function () {
         try {
@@ -91,13 +28,6 @@
     </script>
   </head>
   <body>
-    <div id="app-preloader" aria-hidden="true">
-      <div class="preloader-mark">
-        <div class="preloader-ring"></div>
-        <div class="preloader-title">Gold City</div>
-        <div class="preloader-subtitle">Premium Commercial Destinations</div>
-      </div>
-    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
