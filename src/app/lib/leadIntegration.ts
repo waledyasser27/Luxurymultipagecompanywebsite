@@ -34,11 +34,27 @@ export type LeadAdapter = {
   submitLead: (payload: LeadPayload) => Promise<LeadSubmissionResult>;
 };
 
+const defaultEmailJsConfig = {
+  serviceId: "service_c1m9x7s",
+  templateId: "template_tx75pxf",
+  publicKey: "kBKCoTMPgVC9bCLo8",
+  toEmail: "info@goldcitydevelopments.com",
+} as const;
+
 const emailJsConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined,
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined,
-  toEmail: (import.meta.env.VITE_LEAD_TO_EMAIL as string | undefined) ?? officialEmail,
+  serviceId:
+    (import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined) ??
+    defaultEmailJsConfig.serviceId,
+  templateId:
+    (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined) ??
+    defaultEmailJsConfig.templateId,
+  publicKey:
+    (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined) ??
+    defaultEmailJsConfig.publicKey,
+  toEmail:
+    (import.meta.env.VITE_LEAD_TO_EMAIL as string | undefined) ??
+    defaultEmailJsConfig.toEmail ??
+    officialEmail,
 };
 
 export function buildLeadPayload(

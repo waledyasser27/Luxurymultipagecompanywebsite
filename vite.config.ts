@@ -3,6 +3,11 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
+const defaultBase =
+  process.env.VITE_APP_BASE ??
+  (process.env.GITHUB_ACTIONS ? '/Luxurymultipagecompanywebsite/' : '/')
+
+const normalizedBase = defaultBase.endsWith('/') ? defaultBase : `${defaultBase}/`
 
 function figmaAssetResolver() {
   return {
@@ -17,7 +22,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: '/Luxurymultipagecompanywebsite/',
+  base: normalizedBase,
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
