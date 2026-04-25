@@ -1,22 +1,25 @@
-export const goldCityHeroImage = "/images/hero-gold-city.jpg.jpg";
-export const sevenBHeroImage = "/images/hero-seven-b-mall.jpg.jpg";
+const imagePath = (filename: string) =>
+  `${import.meta.env.BASE_URL}images/${encodeURIComponent(filename)}`;
+
+export const goldCityHeroImage = imagePath("hero-gold-city.jpg.jpg");
+export const sevenBHeroImage = imagePath("hero-seven-b-mall.jpg.jpg");
 export const sevenBGalleryImages = [
-  "/images/7b-1.jpg",
-  "/images/7b-2.jpg",
-  "/images/7v-3.jpg",
-  "/images/7b-4.jpg",
-  "/images/7b-5.jpg",
+  imagePath("7b-1.jpg"),
+  imagePath("7b-2.jpg"),
+  imagePath("7v-3.jpg"),
+  imagePath("7b-4.jpg"),
+  imagePath("7b-5.jpg"),
 ] as const;
-export const shabrawyHeroImage =
-  "/images/sh1.png";
+export const shabrawyHeroImage = imagePath("sh1.png");
 export const shabrawyGalleryImages = [
-  "/images/sh1.png",
-  "/images/sh2.png",
-  "/images/sh3.png",
-  "/images/sh4.png",
+  imagePath("sh1.png"),
+  imagePath("sh2.png"),
+  imagePath("sh3.png"),
+  imagePath("sh4.png"),
 ] as const;
-export const brandLogoImage =
-  "/images/ChatGPT%20Image%20Apr%2023,%202026,%2002_50_15%20PM.png";
+export const brandLogoImage = imagePath(
+  "ChatGPT Image Apr 23, 2026, 02_50_15 PM.png",
+);
 
 export const homeHeroSlides = [
   {

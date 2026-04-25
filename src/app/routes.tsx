@@ -6,16 +6,21 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { ProjectDetailsPage } from "./pages/ProjectDetailsPage";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: Layout,
+      children: [
+        { index: true, Component: HomePage },
+        { path: "about", Component: AboutPage },
+        { path: "projects", Component: ProjectsPage },
+        { path: "projects/:slug", Component: ProjectDetailsPage },
+        { path: "contact", Component: ContactPage },
+      ],
+    },
+  ],
   {
-    path: "/",
-    Component: Layout,
-    children: [
-      { index: true, Component: HomePage },
-      { path: "about", Component: AboutPage },
-      { path: "projects", Component: ProjectsPage },
-      { path: "projects/:slug", Component: ProjectDetailsPage },
-      { path: "contact", Component: ContactPage },
-    ],
+    basename: import.meta.env.BASE_URL,
   },
-]);
+);

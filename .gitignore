@@ -5,3 +5,5 @@ dist
 .vite-dev.err
 .vite-dev-*.log
 .vite-dev-*.err
+.vite-localhost.log
+.vite-localhost.err
