@@ -18,7 +18,7 @@ export const shabrawyGalleryImages = [
   imagePath("sh4.png"),
 ] as const;
 export const brandLogoImage = imagePath(
-  "ChatGPT Image Apr 23, 2026, 02_50_15 PM.png",
+  "ChatGPT Image Apr 23, 2026, 02_50_15 PM.jpg",
 );
 
 export const homeHeroSlides = [

@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { officialEmailHref, officialPhoneTel } from "../config/contact";
-import { brandLogoImage } from "../config/media";
 import { useLanguage } from "../i18n/LanguageProvider";
 
 export function Footer() {
@@ -13,13 +12,6 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
           <div className="space-y-5">
             <div className="flex items-center gap-4">
-              <span className="flex h-16 w-28 items-center justify-center overflow-hidden rounded-2xl border border-transparent bg-transparent">
-                <img
-                  src={brandLogoImage}
-                  alt="Gold City Developments logo"
-                  className="h-full w-full object-contain"
-                />
-              </span>
               <h3 className="text-3xl font-serif tracking-tight">
                 {dictionary.brand.name}
               </h3>

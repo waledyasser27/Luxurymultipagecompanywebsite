@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router";
 import { Globe2, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { officialPhoneDisplay, officialPhoneTel } from "../config/contact";
-import { brandLogoImage } from "../config/media";
 import { useLanguage } from "../i18n/LanguageProvider";
 
 export function Navbar() {
@@ -54,15 +53,8 @@ export function Navbar() {
           <div className="flex h-20 items-center justify-between">
             <Link
               to="/"
-              className="flex items-center gap-3 text-2xl md:text-3xl font-serif tracking-tight"
+              className="flex items-center text-2xl md:text-3xl font-serif tracking-tight"
             >
-              <span className="flex h-12 w-20 items-center justify-center overflow-hidden rounded-2xl border border-transparent bg-transparent">
-                <img
-                  src={brandLogoImage}
-                  alt="Gold City Developments logo"
-                  className="h-full w-full object-contain"
-                />
-              </span>
               <div className="flex flex-col">
                 <span
                   className={`text-lg transition-colors md:text-2xl ${

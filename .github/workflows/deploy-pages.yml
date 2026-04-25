@@ -33,6 +33,11 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          VITE_EMAILJS_SERVICE_ID: service_c1m9x7s
+          VITE_EMAILJS_TEMPLATE_ID: template_tx75pxf
+          VITE_EMAILJS_PUBLIC_KEY: kBKCoTMPgVC9bCLo8
+          VITE_LEAD_TO_EMAIL: info@goldcitydevelopments.com
         run: npm run build
 
       - name: Add SPA fallback
