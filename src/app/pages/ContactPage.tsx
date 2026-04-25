@@ -88,15 +88,25 @@ export function ContactPage() {
             <p className="text-xs uppercase tracking-[0.4em] text-[#9d7529]">
               {dictionary.common.strategicAddress}
             </p>
-            <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-[#e5e5e5] bg-[#f7f7f7]">
+            <a
+              href={mapHref}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative mt-6 block overflow-hidden rounded-[1.5rem] border border-[#e5e5e5] bg-[#f7f7f7]"
+              aria-label={dictionary.contact.mapLabel}
+            >
               <iframe
                 title={dictionary.contact.mapLabel}
                 src={mapEmbedHref}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="h-80 w-full border-0"
+                className="pointer-events-none h-80 w-full border-0"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="absolute bottom-4 right-4 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9d7529] shadow-[0_10px_24px_rgba(17,17,17,0.12)]">
+                Open Map
+              </div>
+            </a>
             <a
               href={mapHref}
               target="_blank"
