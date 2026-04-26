@@ -12,7 +12,8 @@ import { useLanguage } from "../i18n/LanguageProvider";
 
 export function ContactPage() {
   const { dictionary } = useLanguage();
-  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dictionary.contact.mapLabel)}`;
+  const mapHref =
+    "https://www.google.com/maps/search/?api=1&query=5J9V%2B8C6%2C%20El%20Shorouk%2C%20Cairo%20Governorate%204933001%2C%20Egypt";
   const mapEmbedHref = `https://maps.google.com/maps?q=${encodeURIComponent(dictionary.contact.mapLabel)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
   const contactCards = [
@@ -91,7 +92,7 @@ export function ContactPage() {
             <a
               href={mapHref}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="group relative mt-6 block overflow-hidden rounded-[1.5rem] border border-[#e5e5e5] bg-[#f7f7f7]"
               aria-label={dictionary.contact.mapLabel}
             >
@@ -102,15 +103,15 @@ export function ContactPage() {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="pointer-events-none h-80 w-full border-0"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="absolute bottom-4 right-4 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9d7529] shadow-[0_10px_24px_rgba(17,17,17,0.12)]">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/8 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9d7529] shadow-[0_10px_24px_rgba(17,17,17,0.12)]">
                 Open Map
               </div>
             </a>
             <a
               href={mapHref}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="mt-4 block text-sm leading-7 text-[#666666] transition-colors hover:text-[#9d7529]"
             >
               {dictionary.contact.mapLabel}

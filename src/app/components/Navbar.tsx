@@ -128,7 +128,7 @@ export function Navbar() {
                 {officialPhoneDisplay}
               </a>
               <Link
-                to="/projects/seven-b-mall"
+                to="/projects/seven-b-mall#reservation"
                 className="rounded-full bg-[#C9A96E] px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-white shadow-[0_14px_30px_rgba(201,169,110,0.24)] transition-transform hover:-translate-y-0.5"
               >
                 {dictionary.nav.reserve}
@@ -198,7 +198,7 @@ export function Navbar() {
                 {dictionary.nav.language}
               </button>
               <Link
-                to="/projects/seven-b-mall"
+                to="/projects/seven-b-mall#reservation"
                 className="block rounded-2xl bg-[#C9A96E] px-4 py-3 text-center text-sm uppercase tracking-[0.25em] text-white"
               >
                 {dictionary.nav.reserve}
